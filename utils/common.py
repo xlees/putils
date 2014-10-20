@@ -11,10 +11,11 @@ import cx_Oracle
 import time
 
 
-fileLoc = inspect.getfile(inspect.currentframe()) # 
-cur_dir = os.path.abspath(os.path.dirname(fileLoc))
+cur_dir = os.path.abspath(os.path.dirname(os.path.realpath(sys.argv[0])))
 conf_dir = "conf"
 conf_file = "cfg.ini"
+
+logging_dir = "logs"
 logging_file = "logging.conf"
 
 
@@ -49,10 +50,15 @@ def getLogger(loggerName):
     if not os.path.exists(logFile):
         raise IOError
 
-    logging.config.fileConfig(logFile)
-    logger = logging.getLogger(loggerName)
-    
-    return logger
+    try:
+        logging.config.fileConfig(logFile)
+    except IOError as e:
+        if not os.path.exists(os.path.join(cur_dir,logging_dir)):
+            print 'logging dir not exists, and i will create it.'
+            os.mkdir(os.path.join(cur_dir,logging_dir))
+            logging.config.fileConfig(logFile)
+
+    return logging.getLogger(loggerName)
 
 def getTfmOracle():
     conf = getConfig()
