@@ -62,7 +62,7 @@ class _WinColorStreamHandler(logging.StreamHandler):
     FOREGROUND_CYAN      = 0x0003
     FOREGROUND_RED       = 0x0004
     FOREGROUND_MAGENTA   = 0x0005
-    FOREGROUND_YELLOW    = 0x0006
+    FOREGROUND_YELLOW    = 0x000e
     FOREGROUND_GREY      = 0x0007
     FOREGROUND_INTENSITY = 0x0008 # foreground color is intensified.
     FOREGROUND_WHITE     = FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED
@@ -82,7 +82,7 @@ class _WinColorStreamHandler(logging.StreamHandler):
     ERROR    = FOREGROUND_RED | FOREGROUND_INTENSITY
     WARNING  = FOREGROUND_YELLOW
     INFO     = FOREGROUND_WHITE
-    DEBUG    = 0x000d
+    DEBUG    = FOREGROUND_MAGENTA
  
     @classmethod
     def _get_color(cls, level):

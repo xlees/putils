@@ -1,6 +1,6 @@
 @echo off
-color 0b
+color b
 echo.
 
-python test.py
-pause
+python main.py
+echo. & pause

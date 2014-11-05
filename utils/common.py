@@ -25,7 +25,7 @@ def getConfFile():
 def getLogFile():
     return os.path.join(cur_dir, conf_dir, logging_file)
 
-def getConfig():
+def getConf():
     config  = ConfigParser()
     config_file = os.path.join(cur_dir, conf_dir, conf_file)
     if not os.path.exists(config_file):
@@ -61,7 +61,7 @@ def getLogger(loggerName):
     return logging.getLogger(loggerName)
 
 def getTfmOracle():
-    conf = getConfig()
+    conf = getConf()
     logger = getLogger('')
 
     rinterval = conf.getint('common','reconnect_interval')
@@ -99,7 +99,7 @@ def getTfmOracle():
     return (conn,cursor)
 
 def getItgsOracle():
-    conf = getConfig()
+    conf = getConf()
     logger = getLogger('')
 
     rinterval = conf.getint('common','reconnect_interval')
